@@ -21,7 +21,7 @@ $Template dynSysElevenLog,"<%= scope.lookupvar('rsyslog::server::server_dir') -%
 
 # Rules
 auth,authpriv.*         ?dynAuthLog
-*.*;auth,authpriv.none,mail.none,cron.none      -?dynSyslog
+*.*;auth,authpriv.none,mail.none,cron.none,local1.none      -?dynSyslog
 cron.*              ?dynCronLog
 daemon.*            -?dynDaemonLog
 kern.*              -?dynKernLog
@@ -30,7 +30,8 @@ user.*              -?dynUserLog
 *.=info;*.=notice;*.=warn;\
     auth.none,authpriv.none;\
     cron.none,daemon.none;\
-    mail.none,news.none     -?dynMessages
+    mail.none,news.none\
+    local1.none     -?dynMessages
 
 local1.*            -?dynSysElevenLog
 
