@@ -15,6 +15,7 @@ $Template dynKernLog,"<%= scope.lookupvar('rsyslog::server::server_dir') -%>%hos
 $Template dynUserLog,"<%= scope.lookupvar('rsyslog::server::server_dir') -%>%hostname%<%= scope.lookupvar('rsyslog::server::logpath') -%>user-%$YEAR%-%$MONTH%-%$DAY%.log"
 $Template dynMailLog,"<%= scope.lookupvar('rsyslog::server::server_dir') -%>%hostname%<%= scope.lookupvar('rsyslog::server::logpath') -%>mail-%$YEAR%-%$MONTH%-%$DAY%.log"
 $Template dynDebug,"<%= scope.lookupvar('rsyslog::server::server_dir') -%>%hostname%<%= scope.lookupvar('rsyslog::server::logpath') -%>debug-%$YEAR%-%$MONTH%-%$DAY%"
+$Template dynMessages,"<%= scope.lookupvar('rsyslog::server::server_dir') -%>%hostname%<%= scope.lookupvar('rsyslog::server::logpath') -%>messages-%$YEAR%-%$MONTH%-%$DAY%"
 
 $Template dynNovaApi,"<%= scope.lookupvar('rsyslog::server::server_dir') -%>nova/%hostname%<%= scope.lookupvar('rsyslog::server::logpath') -%>nova-api-%$YEAR%-%$MONTH%-%$DAY%.log"
 
@@ -30,6 +31,8 @@ user.*              -?dynUserLog
     auth.none,authpriv.none;\
     cron.none,daemon.none;\
     mail.none,news.none     -?dynMessages
+
+local1.*            -?dynNovaApi
 
 <% else -%>
 # Template
