@@ -1,3 +1,7 @@
+# Do not truncate loglines
+$MaxMessageSize 20k
+$EscapeControlCharactersOnReceive off
+
 <% if scope.lookupvar('rsyslog::server::enable_udp') -%>
 # Load UDP module
 $ModLoad imudp
