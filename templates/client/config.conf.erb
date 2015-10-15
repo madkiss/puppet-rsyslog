@@ -3,6 +3,8 @@ $WorkDirectory <%= scope.lookupvar('rsyslog::spool_dir') -%>    # where to place
 $ActionQueueFileName queue      # unique name prefix for spool files
 $ActionQueueMaxDiskSpace <%= scope.lookupvar('rsyslog::client::spool_size') -%>     # spool space limit (use as much as possible)
 $ActionQueueSaveOnShutdown on   # save messages to disk on shutdown
+$MaxMessageSize 20k # do not truncate long log lines
+$EscapeControlCharactersOnReceive off # do not escape control characters
 <% if scope.lookupvar('rsyslog::client::spool_timeoutenqueue') -%>
 $ActionQueueTimeoutEnqueue <%= scope.lookupvar('rsyslog::client::spool_timeoutenqueue') -%>   # time to wait before discarding on full spool
 <% end -%>
